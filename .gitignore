@@ -18,7 +18,12 @@
 **/selenium-debug.log
 **/.sass-cache
 **/target
+**/*.key
 **/*.pem
+**/*.ext
+**/*.crt
+**/*.csr
+**/*.srl
 **/package-lock.json
 **/*.code-workspace
 **/.env
