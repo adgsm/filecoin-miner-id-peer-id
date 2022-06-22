@@ -1,0 +1,114 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "url" : "https://green.filecoin.space"
+  } ],
+  "info" : {
+    "description" : "Filecoin storage providers Miner Id <-> Peer Id relation",
+    "version" : "1.0.0",
+    "title" : "Filecoin storage providers Miner Id <-> Peer Id relation",
+    "contact" : {
+      "email" : "momcilo.dzunic@protocol.ai"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths" : {
+    "/minerid-peerid/api/v1/peer-id" : {
+      "get" : {
+        "summary" : "Searches Peer Ids for provided comma delimited list of Miner Ids",
+        "operationId" : "searchPeerIds",
+        "description" : "By passing in the comma delimited list of Miner Ids, you can search for\nrelated Peer Ids in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "miner_id",
+          "description" : "pass an optional comma delimited list of Miner Ids for looking up related Peer Ids",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ResponseItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/minerid-peerid/api/v1/miner-id" : {
+      "get" : {
+        "summary" : "Searches Miner Ids for provided comma delimited list of Peer Ids",
+        "operationId" : "searchMinerIds",
+        "description" : "By passing in the comma delimited list of Peer Ids, you can search for\nrelated Miner Ids in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "peer_id",
+          "description" : "pass an optional comma delimited list of Peer Ids for looking up related Miner Ids",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ResponseItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ResponseItem" : {
+        "type" : "object",
+        "required" : [ "Head", "MinerId", "PeerId", "Multiaddrs" ],
+        "properties" : {
+          "Head" : {
+            "type" : "integer",
+            "example" : 1908194
+          },
+          "MinerId" : {
+            "type" : "string",
+            "example" : "f01234"
+          },
+          "PeerId" : {
+            "type" : "string",
+            "example" : "12D3KooWBBcrU2hF14VhZ5AsnuL9ZeEwgnXeYFkVyefzfApz5PJ3"
+          },
+          "Multiaddrs" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Multiaddrs"
+            }
+          }
+        }
+      },
+      "Multiaddrs" : {
+        "type" : "string",
+        "example" : "BNPA+NMGhNE="
+      }
+    }
+  }
+}
