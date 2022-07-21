@@ -27,7 +27,8 @@
           "description" : "pass an optional comma delimited list of Miner Ids for looking up related Peer Ids",
           "required" : false,
           "schema" : {
-            "type" : "string"
+            "type" : "string",
+            "default": "f01234"
           }
         } ],
         "responses" : {
@@ -58,7 +59,8 @@
           "description" : "pass an optional comma delimited list of Peer Ids for looking up related Miner Ids",
           "required" : false,
           "schema" : {
-            "type" : "string"
+            "type" : "string",
+            "default": "12D3KooWPWJemjphGa2pANr6j7HCaLyjUvCroHyTJsATY6TaCFAF"
           }
         } ],
         "responses" : {
